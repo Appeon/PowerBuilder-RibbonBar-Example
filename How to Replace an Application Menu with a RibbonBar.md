@@ -58,7 +58,7 @@ Prerequisites
 
     4. In PowerBuilder, setup and connect to the created ODBC data source
 
-![](Images/Image5.png)
+       ![](Images/Image5.png)
 
 Design and create a RibbonBar 
 ==============================
