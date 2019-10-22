@@ -1,0 +1,6 @@
+Save Format v3.0(19990112)
+@begin Targets
+ 0 "sales_application_demo.pbt";
+@end;
+DefaultTarget "sales_application_demo.pbt";
+DefaultRemoteTarget "sales_application_demo.pbt";
