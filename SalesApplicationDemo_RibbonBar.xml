@@ -4,20 +4,20 @@
     <Categories>
       <Category Text="Operation" Tag="CategoryOperation" Enabled="true">
         <Panel Text="Board" Tag="Board" PictureName=".\pictrue\orderview.png" Enabled="true">
-          <LargeButton Text="Order View" Tag="OrderView" PictureName=".\picture\orderview.png" Clicked="ue_orderview" />
-          <LargeButton Text="Customer Maintenance" Tag="CustomerMaintenance" PictureName=".\picture\customermaintenance.png" Clicked="ue_cus_maintenance"/>
-          <LargeButton Text="Report by order" Tag="Reportbyorder" PictureName=".\picture\ordertype.png" Clicked="ue_rep_ordertype_button" />
+          <LargeButton Text="Order View" Tag="OrderView" PictureName=".\picture\orderview.png" Clicked="ue_orderview" Shortcut="ctrl+shift+O" />
+          <LargeButton Text="Customer Maintenance" Tag="CustomerMaintenance" PictureName=".\picture\customermaintenance.png" Clicked="ue_cus_maintenance" Shortcut="ctrl+shift+c"/>
+          <LargeButton Text="Report by order" Tag="Reportbyorder" PictureName=".\picture\ordertype.png" Clicked="ue_rep_ordertype_button" Shortcut="ctrl+shift+r"/>
         </Panel>
         <Panel Text="Action" Enabled="true" Tag="Action" PictureName=".\picture\Actions.png">
           <Group Enabled="true" NewLine="true" Tag="">
-            <SmallButton Text="" Tag="Retrieve" PictureName="RefreshSmall!" Clicked="ue_retrieve" PowerTipText="Refresh" PowerTipDescription="Refresh the DataWindow data" />
-            <SmallButton Text="" Tag="InsertRow" PictureName=".\picture\InsertRow.png" Clicked="ue_insertrow" PowerTipText="Insert Row" PowerTipDescription="Insert a row to add new data" />
+            <SmallButton Text="" Tag="Retrieve" PictureName="RefreshSmall!" Clicked="ue_retrieve" PowerTipText="Refresh" PowerTipDescription="Refresh the DataWindow data" Shortcut="ctrl+R" />
+            <SmallButton Text="" Tag="InsertRow" PictureName=".\picture\InsertRow.png" Clicked="ue_insertrow" PowerTipText="Insert Row" PowerTipDescription="Insert a row to add new data" Shortcut="ctrl+I" />
           </Group>
           <Group Enabled="true" NewLine="true" Tag="">
-            <SmallButton Text="" Tag="ModifyRow" PictureName="ModifySmall!" Clicked="ue_modify" />
-            <SmallButton Text="" Tag="DeleteRow" PictureName=".\picture\DeleteRow.png" Clicked="ue_DeleteRow" PowerTipDescription="Delete the currently selected row; not commit to the database yet" />
+            <SmallButton Text="" Tag="ModifyRow" PictureName="ModifySmall!" Clicked="ue_modify" Shortcut="ctrl+M"/>
+            <SmallButton Text="" Tag="DeleteRow" PictureName=".\picture\DeleteRow.png" Clicked="ue_DeleteRow" PowerTipDescription="Delete the currently selected row; not commit to the database yet" Shortcut="ctrl+D"/>
           </Group>
-          <LargeButton Text="Save Data" Tag="SaveData" PictureName="SaveBig!" Clicked="ue_SaveData" PowerTipText="Save Data" PowerTipDescription="Save the specified DataWindow data">
+          <LargeButton Text="Save Data" Tag="SaveData" PictureName="SaveBig!" Clicked="ue_SaveData" PowerTipText="Save Data" PowerTipDescription="Save the specified DataWindow data" Shortcut="ctrl+S">
           </LargeButton>
           <Group Tag="">
             <SmallButton Tag="First" PictureName=".\picture\NavFirstSmall.png" Clicked="ue_first" PowerTipDescription="Scroll to first row" />
@@ -34,8 +34,8 @@
           <Group Tag="" NewLine="true">
             <SmallButton Text="" Tag="Sort" PictureName="SortSmall!" Clicked="ue_Sort" PowerTipDescription="Sort"/>
             <SmallButton Text="" Tag="Filter" PictureName="FilterSmall!" Clicked="ue_filter" PowerTipDescription="Filter" />
-            <SmallButton Text="" Tag="Find" PictureName=".\picture\Find.png" Clicked="ue_find" PowerTipDescription="Find" />
-            <SmallButton Text="" Tag="FindNext" PictureName=".\picture\FindNext.png" Clicked="ue_FindNext" PowerTipDescription="Find Next" />
+            <SmallButton Text="" Tag="Find" PictureName=".\picture\Find.png" Clicked="ue_find" PowerTipDescription="Find" Shortcut="ctrl+F"/>
+            <SmallButton Text="" Tag="FindNext" PictureName=".\picture\FindNext.png" Clicked="ue_FindNext" PowerTipDescription="Find Next" Shortcut="ctrl+N"/>
           </Group>
         </Panel>
         <Panel Text="Export PDF" Enabled="true" Tag="ExportPDF" PictureName="ExportBig!">
@@ -79,7 +79,7 @@
           </Group>
         </Panel>
         <Panel Text="Print" Tag="PrintPanel" PictureName="PreviewSmall!">
-          <LargeButton Text="Print Preview" Tag="PrintPreview" PictureName="PreviewBig!" Clicked="ue_printpreview" PowerTipText="Preview data" PowerTipDescription="Preview the DataWindow data for printing" />
+          <LargeButton Text="Print Preview" Tag="PrintPreview" PictureName="PreviewBig!" Clicked="ue_printpreview" PowerTipText="Preview data" PowerTipDescription="Preview the DataWindow data for printing" Shortcut="ctrl+V"/>
           <LargeButton Text="Orientation" Tag="Orientation" PictureName="OrientationBig!" Clicked="" DefaultCommand="false" PowerTipText="Print Orientation" PowerTipDescription="Set the print orientation">
             <Menu>
               <Item Text="Default" Tag="Default" PictureName=".\picture\Default.png" Clicked="ue_orientation_menu" />
@@ -136,7 +136,7 @@
               <Item Text="50" PictureName="" />
             </ComboBox>
           </Group>
-          <LargeButton Text="Print" Tag="Print" PictureName=".\picture\printbig.png" Clicked="ue_print" PowerTipText="Print Data" PowerTipDescription="Print preview datawidnow" />
+          <LargeButton Text="Print" Tag="Print" PictureName=".\picture\printbig.png" Clicked="ue_print" PowerTipText="Print Data" PowerTipDescription="Print preview datawidnow" Shortcut="ctrl+P" />
           <LargeButton Text="Print Setup" Tag="PrintSetup" PictureName="PrintSetupBig!" Clicked="ue_print_setup" PowerTipText="Print setup" PowerTipDescription="Open print option dialog before print" />
         </Panel>
       </Category>      
@@ -149,7 +149,7 @@
         </Panel>
       </Category>
       <!--add Order & Product toolbar-->
-      <Category Text="Order&amp;&amp;Product" Tag="CategoryOrderProduct">
+      <Category Text="Order&amp;Product" Tag="CategoryOrderProduct">
         <Panel Text="Order" PictureName=".\picture\ordertype.png">
           <LargeButton Text="New Order" PictureName=".\picture\neworder.png" Clicked="ue_order_new" />
           <LargeButton Text="Order Maintenance" PictureName=".\picture\ordermaintenance.png" Clicked="ue_order_maintenance" />
@@ -190,7 +190,7 @@
             <SmallButton Tag="2D BarStacked" Text="2D Bar" PictureName=".\picture\2dbarstacked.png" Clicked="ue_rep_style" PowerTipText="2D" PowerTipDescription="2D Bar Stacked report" />
             <SmallButton Tag="Grid Data" Text="Grid Data" PictureName=".\picture\griddata.png" Clicked="ue_rep_style" />
           </Group>
-          <LargeButton Text="Customer Report" PictureName=".\picture\customerreport.png" Clicked="ue_rep_report" />
+          <LargeButton Text="Customer Report" PictureName=".\picture\customerreport.png" Clicked="ue_rep_report" Shortcut="ctrl+Shift+L" />
         </Panel>
       </Category>
     </Categories>
@@ -198,27 +198,27 @@
     <TabButtons>
       <TabButton Text="Up" PictureName=".\picture\up.png" Clicked="ue_up" />
       <TabButton Text="About" PictureName=".\picture\help.png" Clicked="ue_about" />
-      <TabButton Text="Close" PictureName=".\picture\close12.png" Clicked="ue_close" />
+      <TabButton Text="Close" PictureName=".\picture\close12.png" Clicked="ue_close"  Shortcut="ctrl+E"/>
     </TabButtons>
     <!--add Application menu list-->
     <ApplicationButton Text="Application" Tag="ApplicationButton">
       <ApplicationMenu>
         <!--add menu list-->
         <Master>
-          <Item Type="Separator!" />
+          <Item  Type="1" /> <!-- Type="Separator!"-->
           <Item Text="User" Tag="UserInfo" PictureName=".\picture\user.png">
             <!--add secondary menu-->
             <Item Tag="UserList" Text="User List" PictureName=".\picture\userlist.png" Clicked="ue_userinfo" />
-            <Item Tag="Group" Text="Group" PictureName=".\pricture\group.png" Clicked="ue_userinfo" />
-            <Item Type="Separator!" />
+            <Item Tag="Group" Text="Group" PictureName=".\picture\group.png" Clicked="ue_userinfo" />
+            <Item Type="1" /><!-- Type="Separator!"-->
             <Item Tag="Password" Text="Password" PictureName=".\picture\password.png" Clicked="ue_userinfo" />
             <Item Tag="Signout" Text="Sign Out" PictureName=".\picture\signout.png" Clicked="ue_userinfo" />
-            <Item Type="Separator!" />
+            <Item Type="1" /><!-- Type="Separator!"-->
           </Item>
-          <Item Type="Separator!" />
+          <Item Type="1" /><!-- Type="Separator!"-->
           <Item Tag="About" Text="About" PictureName=".\picture\about.png" Clicked="ue_about2" />
           <Item Tag="Close" Text="Close" PictureName=".\picture\close.png" Clicked="ue_close2" />
-          <Item Type="Separator!" />
+          <Item Type="1" /><!-- Type="Separator!"-->
         </Master>
         <!--add Recent menu list-->
         <Recent Title="Recent Windows">
