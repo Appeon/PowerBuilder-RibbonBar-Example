@@ -377,11 +377,11 @@ Example 6 – Adding shortcut keys
 ------------------------------------------------
 
 It is possible to set shortcut keys for RibbonBar buttons. 
-To set the shortcut key in XML:
->   ​        <SmallButton Text="" Tag="ModifyRow" PictureName="ModifySmall" Clicked="ue_modify" Shortcut="ctrl+M"/>
+To set the shortcut key in XML: 
+&lt;SmallButton Text="" Tag="ModifyRow" PictureName="ModifySmall" Clicked="ue_modify" Shortcut="ctrl+M"/&gt;
 
 To set the shortcut key in PowerScript:
->   ​        lrbb_SmallButton.ShortCut = "ctrl+M"
+lrbb_SmallButton.ShortCut = "ctrl+M"
 
 Summary notes
 =============
