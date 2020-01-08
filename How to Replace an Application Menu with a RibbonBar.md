@@ -376,7 +376,8 @@ For example, the standard RibbonBar buttons for collapsing and expanding, help, 
 Example 6 – Adding shortcut keys 
 ------------------------------------------------
 
-It is possible to set shortcut keys for RibbonBar buttons. 
+It is possible to set shortcut keys for RibbonBar buttons.
+
 To set the shortcut key in XML: 
 &lt;SmallButton Text="" Tag="ModifyRow" PictureName="ModifySmall" Clicked="ue_modify" Shortcut="ctrl+M"/&gt;
 
