@@ -1,7 +1,7 @@
 # How to Replace an Application Menu with a RibbonBar
 
 Overview
-========
+--------
 
 The new RibbonBar control allows you to organize the navigation of your application in a simple, structured way, and gives the application the look and feel of modern applications. Because RibbonBar is provided in PowerBuilder as a control while Menu is a system object, the way that a RibbonBar works in an application is different from the application menu. This tutorial uses a demo application to walk you through the steps of replacing an application menu with a RibbonBar.
 
@@ -21,7 +21,7 @@ This tutorial contains the following sections:
 
   This explains how to set up the demo application used in the tutorial.
 
-- [Design and create a RibbonBar](#initiate-the-ribbonbar)
+- [Design and create a RibbonBar](#design-and-create-a-ribbonbar)
 
   You shall have a clear understanding of your application to know how to design and create a RibbonBar for it.
 
@@ -29,45 +29,50 @@ This tutorial contains the following sections:
 
   The RibbonBar will replace the existing menu in the application. Therefore, you must disable the existing menu before adding the RibbonBar.
 
+- [Initiate the RibbonBar](#initiate-the-ribbonbar)
+
+  This explains how to initiate the RibbonBar created by XML or by PowerScript.
+
 - [Associating functions with RibbonBar items](#associate-functions-with-ribbonbar-items)
 
   Previously the application functions are all associated with menu items. You need to decide which function to associate with which RibbonBar item.
+
+- [More RibbonBar techniques with examples](#more-ribbonbar-techniques-with-examples)
+
+  This section provides a few techniques, with examples, on how to present the RibbonBar and its items in the desired way.
 
 - [Summary notes](#summary-notes)
 
   Finally, this section highlights the major points you should consider when you start to replace the menu in your application with RibbonBar.
 
 Prerequisites
-=============
+-------------
 
 - PowerBuilder 2019 R2
 
 - Download the RibbonBar demo application from <https://github.com/Appeon/PowerBuilder-RibbonBar-Example>.
 
-- Sample database setup:
+- Sample database setup: setting up ODBC database connection
 
-  - Setup ODBC database connection
+  1. Open Control Panel \> Administrative Tools \> ODBC Data Sources (64-bit)
+  2. Create a new Data Source in SQL Anywhere 17
+  3. Fill in the data source settings. You can get the database file “AppeonSample.db” in the downloaded source files.The username and password for data source connection is ‘dba/sql’
 
-    1. Open Control Panel \> Administrative Tools \> ODBC Data Sources (64-bit)
+  ![](Images/Image4.png)
 
-    2. Create a new Data Source in SQL Anywhere 17
+  4. In PowerBuilder, setup and connect to the created ODBC data source
 
-    3. Fill in the data source settings. You can get the database file “AppeonSample.db” in the downloaded source files.The username and password for data source connection is ‘dba/sql’
+  ![](Images/Image5.png)
 
-       ![](Images/Image4.png)
-
-    4. In PowerBuilder, setup and connect to the created ODBC data source
-
-       ![](Images/Image5.png)
 
 Design and create a RibbonBar 
-==============================
+------------------------------
 
 As the first step, you shall design the RibbonBar, that is, deciding what items to contain in the RibbonBar, what modern-looking image to use for each item, and how to group the items, etc.
 
 Once you know clearly how you want the RibbonBar to look like, you can start to create it. We recommend you use the RibbonBar Builder tool to create the RibbonBar XML file. Alternatively, you can choose to directly create a RibbonBar via PowerScript.
 
-For detailed instructions on how to create a RibbonBar, refer to PowerBuilder Help \> RibbonBar control. In the Sales Demo application, for better illustration purpose, you will see both the XML file and PowerScript code are provided for create the RibbonBar. When the application initiates the RibbonBar, it uses an argument in the wf_init_ribbonbar function to decide which way (XML or PowerScript) to use for create the RibbonBar (see [Initiate the RibbonBar](#initiate-the-ribbonbar)).
+For detailed instructions on how to create a RibbonBar, refer to PowerBuilder Help \> RibbonBar control. In the Sales Demo application, for better illustration purpose, you will see both the XML file and PowerScript code are provided for create the RibbonBar. 
 
 **Creating the XML for the RibbonBar in this demo (Recommended):**
 
@@ -85,35 +90,26 @@ In the Sales Demo application:
 
   For example, the following script inserts File as a RibbonBar category, add a orderview panel in this category, and then add buttons inside the panel.
 
-  > *//File menu*
-
-  > *long ll_handle,ll_category,ll_panel,ll_group*
-
-  > *RibbonSmallButtonItem lrs_item*
-
-  > *Ribbonmenu lrm_menu*
-
-  > *ribbonLargeButtonItem lrl_item*
-
-  > *ribbongroupitem lrg_item*
-
-  > *long ll_return,ll_tmp,ll_tmp2*
-
-  > *ll_category = arbb.insertcategoryfirst("File") //Insert a category*
-
-  > *//orderview*
-
-  > *ll_panel = arbb.insertpanellast( ll_category, "OrderView","orderview.png") //Insert a panel*
-
-  > *arbb.insertLargebuttonlast(ll_panel,"Orders","orderview.png","ue_orderview") //Insert button*
-
-  > *arbb.insertLargebuttonLast(ll_panel,"Print","printbig.png","ue_orderview_print")*
+  ```c++
+  //File menu
+  long ll_handle,ll_category,ll_panel,ll_group
+  RibbonSmallButtonItem lrs_item
+  Ribbonmenu lrm_menu
+  ribbonLargeButtonItem lrl_item
+  ribbongroupitem lrg_item
+  long ll_return,ll_tmp,ll_tmp2
+  ll_category = arbb.insertcategoryfirst("File") //Insert a category
+  
+  //orderview
+  ll_panel = arbb.insertpanellast( ll_category, "OrderView","orderview.png") //Insert a panel
+  arbb.insertLargebuttonlast(ll_panel,"Orders","orderview.png","ue_orderview") //Insert button
+  arbb.insertLargebuttonLast(ll_panel,"Print","printbig.png","ue_orderview_print")
+  ```
 
 Add the RibbonBar to the application
-====================================
+------------------------------------
 
-Replacing the existing menu with an empty one
----------------------------------------------
+### Replacing the existing menu with an empty one
 
 After the RibbonBar is applied, the previous menu will no longer be used in the application. We shall use an empty menu to replace the previous application menu assigned to the MDI window.
 
@@ -123,8 +119,7 @@ After the RibbonBar is applied, the previous menu will no longer be used in the 
 
 In the Sales Demo application, we created the menu object m_mdi_none and assigned it to mdi_1. The menu object contains one main menu and one submenu. Note that the submenu item is set to invisible.
 
-Inserting a RibbonBar control to the MDI window
-----------------------------------------------
+### Inserting a RibbonBar control to the MDI window
 
 Insert the RibbonBar control object into the MDI window. Note that you must resize the width and height for RibbonBar area in correspondence with the MDI client area to make sure the RibbonBar fits well in the MDI window.
 
@@ -132,22 +127,19 @@ In the Sales Demo application:
 
 1. Insert the RibbonBar control into the MDI window mdi_1
 
-2. Addthe following resize() code toresize the RibbonBar and the MDI window:
+2. Add the following resize() code to resize the RibbonBar and the MDI window:
 
-   > *//resize RibbonBar*
+   ```C++
+   //resize RibbonBar
+   rbb_1.move(0,newheight - this.workspaceheight() )
+   rbb_1.width = newwidth
+   
+   //resize mdi_1 based on RibbonBar
+   mdi_1.move(0,rbb_1.height +newheight - this.workspaceheight())
+   mdi_1.resize(newwidth,newheight - rbb_1.height - ( newheight - this.workspaceheight()))
+   ```
 
-   > *rbb_1.move(0,newheight - this.workspaceheight() )*
-
-   > *rbb_1.width = newwidth*
-
-   > *//resize mdi_1 based on RibbonBar*
-
-   > *mdi_1.move(0,rbb_1.height +newheight - this.workspaceheight())*
-
-   > *mdi_1.resize(newwidth,newheight - rbb_1.height - ( newheight - this.workspaceheight()))*
-
-DisablingControlMenu insheet windows
-------------------------------------
+### Disabling ControlMenu in sheet windows
 
 Because the RibbonBar control applies to the whole application, it is no longer necessary to provide the Control Menu in sheet windows. To make sure the sheet window still provides the Close button after the Control Menu is removed, the new RibbonBar shall contain the Close/Exit button.
 
@@ -158,49 +150,50 @@ In the Sales Demo application:
 2.  Add the close/exit button in the RibbonBar top-right corner when we [Design and create a RibbonBar](#design-and-create-a-ribbonbar).
 
 Initiate the RibbonBar 
-=======================
+-----------------------
 
 In the [Design and create a RibbonBar](#design-and-create-a-ribbonbar) section, we used two ways to createtheRibbonBar for the application: by XML or PowerScript. We can choose to initiate the RibbonBar created in either way.
 
-Initiating the RibbonBar createdby XML
---------------------------------------
+### Initiating the RibbonBar created by XML
 
 In the Sales Demo Application:
 
 1. Add an instance variable in the MDI window.
 
-   *String is_Ribbonbar_XML_Name = "SalesApplicationDemo_RibbonBar.xml"*
+   ```c++
+   String is_Ribbonbar_XML_Name = "SalesApplicationDemo_RibbonBar.xml"
+   ```
 
-2. Initiate RibbonBar menu in the MDI window open() event. The second argument is True, indicating that the RibbonBar will be initiated using XML:
+   Initiate RibbonBar menu in the MDI window open() event. The second argument is True, indicating that the RibbonBar will be initiated using XML:
 
-   *wf_init_ribbonbar(rbb_1,True)*
+   ```c++
+   wf_init_ribbonbar(rbb_1,True)
+   ```
 
-3. In the function wf_init_ribbonbar of MDI window, load the RibbonBar from theXML file with the following code:
+   In the function wf_init_ribbonbar of MDI window, load the RibbonBar from theXML file with the following code:
 
-   *If ab_LoadXML Then*
+   ```c++
+   If ab_LoadXML Then
+     arbb.LoadFile(is_Ribbonbar_XML_Name)
+     return
+   End If
+   ```
 
-   ​        *arbb.LoadFile(is_Ribbonbar_XML_Name)*
-
-   ​        *return*
-
-   *End If*
-
-Initiating the RibbonBar created by PowerScript
------------------------------------------------
+### Initiating the RibbonBar created by PowerScript
 
 In the Sales Demo Application:
 
 - Initiate RibbonBar menu in the MDI window open() event. The second argument is False, indicating that the RibbonBar will be initiated using PowerScript:
 
-  *wf_init_ribbonbar(rbb_1,False)*
+  ```c++
+  wf_init_ribbonbar(rbb_1,False) 
+  ```
 
-Associate functions with RibbonBar items
-========================================
+## More RibbonBar techniques with examples
 
-Previously the application functions are all associated with menu items. You need to decide which function to associate with which RibbinBar item now. In the Sales Demo application, you can see clearly how a function that is previously associated with a menu item is now associated with a RibbonBar item. In this tutorial, let’s explain two examples.
+Previously the application functions are all associated with menu items. You need to decide which function to associate with which RibbinBar item now. In the Sales Demo application, you can see clearly how a function that is previously associated with a menu item is now associated with a RibbonBar item. In this tutorial, let’s explain a few techniques with examples.
 
-Example 1– Opening the “By Order Type” report
----------------------------------------------
+### Example 1– Opening the “By Order Type” report
 
 In the original application, the “By Order Type” report is opened from Report \> By Order Type menu item.
 
@@ -210,29 +203,25 @@ The new application uses the Report \> Sales Reports \> By Order Type RibbonBar 
 
 ![](Images/Image7.png)
 
-**PowerScriptinthe previous menu item m_report1.m_salesreports.m_byordertype:**
+**PowerScript in the previous menu item m_report1.m_salesreports.m_byordertype:**
 
->   ​        *str_rptparm lstr_parm*
->
->   > ​        *lstr_parm.ftitle = 'Sales Report by Order Type'*
->
->   > ​        *lstr_parm.fdataobject = ""*
->
->   > ​        *opensheetWithParm(w_rpt_order_type,lstr_parm , parentwindow , 0 , Original!)*
+```c++
+str_rptparm lstr_parm
+lstr_parm.ftitle = 'Sales Report by Order Type'
+lstr_parm.fdataobject = ""
+opensheetWithParm(w_rpt_order_type,lstr_parm , parentwindow , 0 , Original!)
+```
 
-**PowerScript inthe event ue_rep_ordertype of the RibbonBar:**
+**PowerScript in the event ue_rep_ordertype of the RibbonBar:**
 
->   ​        *str_rptparm lstr_parm*
-
->   ​        *lstr_parm.ftitle = 'Sales Report by Order Type'*
-
->   ​        *lstr_parm.fdataobject = ""*
-
->   ​        *opensheetWithParm(w_rpt_order_type,lstr_parm , parent , 0 , Original! )*
-
->   ​        *iw_tmp = w_rpt_order_type*
-
->   ​        *wf_setstyle("2D BarStacked")*
+```c++
+str_rptparm lstr_parm
+lstr_parm.ftitle = 'Sales Report by Order Type'
+lstr_parm.fdataobject = ""
+opensheetWithParm(w_rpt_order_type,lstr_parm , parent , 0 , Original! )
+iw_tmp = w_rpt_order_type
+wf_setstyle("2D BarStacked")
+```
 
 **Key points covered in the PowerScript change:**
 
@@ -248,8 +237,7 @@ The new application uses the Report \> Sales Reports \> By Order Type RibbonBar 
 
   Identify if the report supports 2D BarStacked or 2D Line style. In this example, the small button “2D Bar” is displayed when this report is actively opened.
 
-Example 2–Opening the “2D BarStacked” report
---------------------------------------------
+### Example 2 – Opening the “2D BarStacked” report
 
 In the original application, the “2D BarStacked” report is opened from the “2D BarStacked” toolbar item.
 
@@ -259,63 +247,53 @@ The new application uses the Report \> 2D Bar RibbonBar item to open the “2D B
 
 ![](Images/Image9.png)
 
-**PowerScript in theprevious toolbar item
-m_report.m_settings.m_defaultsettings.m_reportstyle.m_item1:**
+**PowerScript in the previous toolbar item m_report.m_settings.m_defaultsettings.m_reportstyle.m_item1:**
 
->   ​        *ParentWindow.Dynamic Event ue_Settings(This.Tag)*
+```c++
+ParentWindow.Dynamic Event ue_Settings(This.Tag)
+If This.Checked Then Return
+This.Checked = True
+m_item3.Checked = False
+m_item4.Checked = False
+m_item5.Checked = False
+```
 
->   ​        *If This.Checked Then Return*
+**PowerScript in the event ue_report_style of the RibbonBar:**
 
->   ​        *This.Checked = True*
-
->   ​        *m_item2.Checked = False*
-
->   ​        *m_item3.Checked = False*
-
->   ​        *m_item4.Checked = False*
-
->   ​        *m_item5.Checked = False*
-
-**PowerScript in theevent ue_report_style of the RibbonBar:**
-
->   ​        *ribbonsmallbuttonitem lrs_item*
-
->   ​        *this.getsmallbutton( al_handle, lrs_item)*
-
->   ​        *string ls_tag*
-
->   ​        *ls_tag = lrs_item.tag*
-
->   ​        *if isvalid (iw_tmp) then*
-
->   ​                *iw_tmp.dynamic event ue_Settings(lrs_item.tag)*
-
->   ​        *end if*
+```c++
+ribbonsmallbuttonitem lrs_item
+this.getsmallbutton( al_handle, lrs_item)
+string ls_tag
+ls_tag = lrs_item.tag
+if isvalid (iw_tmp) then
+	iw_tmp.dynamic event ue_Settings(lrs_item.tag)
+end if
+```
 
 **Key points covered in the PowerScript change:**
 
 -   The Checked status for the toolbar item is no longer applicable for RibbonBar item.
 
--   *ribbonsmallbuttonitem lrs_item*
+```c++
+ribbonsmallbuttonitem lrs_item
+this.getsmallbutton( al_handle, lrs_item)
+string ls_tag
+ls_tag = lrs_item.tag
+```
 
->   ​          *this.getsmallbutton( al_handle, lrs_item)*
+- The Tag property is used as identifier for some business logic of toolbar items. The Tag value need to be migrated into the RibbonBar item. In this example, we use handle to obtain the Tag value from a RibbonBar item. The report style will be switched based on the Tag value.
 
->   ​          *string ls_tag*
 
->   ​          *ls_tag = lrs_item.tag*
+```c++
+if isvalid (iw_tmp) then
+	iw_tmp.dynamic event ue_Settings(lrs_item.tag)
+end if
+```
 
-​	The Tag property is used as identifier for some business logic of toolbar items. The Tag value need to be migrated into the RibbonBar item. In 	this example, we use handle to obtain the Tag value from a RibbonBar item. The report style will be switched based on the Tag value.
+- The parent window is not applicable for RibbonBar items, and the parent object is not applicable for RibbonBar either. The parent window is an MDI window instead of a sheet window, and the actual parent object will be the tracked sheet window in the buffer. The buffer is maintained in the object iw_tmp.
 
--   *if isvalid (iw_tmp) then*
 
->   ​                *iw_tmp.dynamic event ue_Settings(lrs_item.tag)*
-
->   ​          *end if*
-
-​	The ParentWindow is not applicable for RibbonBar items. However, the parent object is not applicable for RibbonBar either. Because the 	parent window is a MDI window instead of a sheet window. The actual parent object will be the tracked sheet window in the buffer. The buffer 	is maintained in the object iw_tmp.
-
-Example 3 – Replacingthe Close/Exit insheet windows
----------------------------------------------------
+### Example 3 – Replacing the Close/Exit in sheet windows
 
 In original MDI window application, the control menu provides the Close button to close the Sheet window, and the Exit button to close the application.
 
@@ -325,34 +303,33 @@ When we apply the RibbonBar, the ControlMenu property is disabledinthe sheet win
 
 ![](Images/Image11.png)
 
-**PowerScript inthe previous w_sheet object close() event:**
+**PowerScript in the previous w_sheet object close() event:**
 
->   ​        *parentwindow().post dynamic event ue_closesheet(this.classname())*
+```c++
+parentwindow().post dynamic event ue_closesheet(this.classname())
+```
 
-**PowerScript inthe w_sheet object close() event of the RibbonBar:**
+**PowerScript in the w_sheet object close() event of the RibbonBar:**
 
->   ​        *parentwindow().post dynamic event ue_closesheet(this.classname())*
-
->   ​        *if isvalid(w_mdi) then*
-
->   ​                *w_mdi.post function wf_refresh_ribbon()*
-
->   ​        *end if*
-
->   ​        *parentwindow().post function Arrangesheets(Layer!)*
+```C++
+parentwindow().post dynamic event ue_closesheet(this.classname())
+if isvalid(w_mdi) then
+	sw_mdi.post function wf_refresh_ribbon()
+end if
+parentwindow().post function Arrangesheets(Layer!)
+```
 
 **Key points covered in the PowerScript change:**
 
 - *w_mdi.post function wf_refresh_ribbon()*
 
-  In the Close event of the sheet window, call the wf_refresh_ribbon function to refresh the RibbonBar buttons and controls in the MDI window at the closing of the sheet window w_mdi function. For example, if the 2D BarStacked report window is closed, the current active report supports2D Line style. The style button in the RibbonBaris refreshed to display the2D Line button.
+  In the Close event of the sheet window, call the wf_refresh_ribbon function to refresh the RibbonBar buttons and controls in the MDI window at the closing of the sheet window w_mdi function. For example, if the 2D BarStacked report window is closed, the current active report supports 2D Line style. The style button in the RibbonBar is refreshed to display the2D Line button.
 
 - *parentwindow().post function Arrangesheets(Layer!)*
 
   In the Close event of the sheet window, call the ArrangeSheets function to re-arrange all the remaining sheet windows via the Layer parameter.
 
-Example 4 – Adding the Application Menu category 
--------------------------------------------------
+### Example 4 – Adding the Application Menu category 
 
 The Application Menu category contains the generic application functions, including:
 
@@ -364,8 +341,7 @@ The Application Menu category contains the generic application functions, includ
 
   ![](Images/Image13.png)
 
-Example 5 – Including special RibbonBar widgets 
-------------------------------------------------
+### Example 5 – Including special RibbonBar widgets 
 
 There are some special RibbonBar widgets that can further enhance user experience in the application.
 
@@ -373,21 +349,42 @@ For example, the standard RibbonBar buttons for collapsing and expanding, help, 
 
 ![](Images/Image14.png)
 
-Example 6 – Adding shortcut keys 
-------------------------------------------------
+### Example 6 – Adding shortcut keys 
 
 It is possible to set shortcut keys for RibbonBar buttons.
 
 To set the shortcut key in XML: 
 
-&lt;SmallButton Text="" Tag="ModifyRow" PictureName="ModifySmall" Clicked="ue_modify" Shortcut="ctrl+M"/&gt;
+```xml
+<SmallButton Text="" Tag="ModifyRow" PictureName="ModifySmall" Clicked="ue_modify" Shortcut="ctrl+M"/>&gt;
+```
 
 To set the shortcut key in PowerScript:
 
+```c++
 lrbb_SmallButton.ShortCut = "ctrl+M"
+```
+
+### Example 7 - Loading different RibbonBar XML to different windows
+
+In the rbb_1.ue_ribbonbar_display_refresh function of the w_mdi window, a CASE statement is used to load different RibbonBar XML to different windows:
+
+```c++
+If	ib_LoadXML	Then
+Choose Case as_windowclassname
+	Case "w_order_viewer","w_rpt_order_date_summary","w_rpt_order_customer_summary"
+		this.ImportFromXMLFile("SalesApplicationDemo_RibbonBar_orderview.xml")
+		Return
+	Case "w_customer_maintenance","w_order_main","w_product_edit"
+		this.ImportFromXMLFile("SalesApplicationDemo_RibbonBar_CustomerMaintenance.xml")
+		Return
+	Case else
+End	Choose
+End	If
+```
 
 Summary notes
-=============
+-------------
 
 - The RibbonBar can be constructed by a standard XML file. PowerBuilder provides RibbonBar Builder with preview functionality to assist you to create the XML file.
 
