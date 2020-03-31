@@ -1,0 +1,230 @@
+<RibbonBar Font="FaceName:Arial; TextSize:8; FontCharSet:ansi!">
+  <RibbonItems>
+    <!--add the toolbar categories-->
+    <Categories>
+      <Category Text="Operation" Tag="CategoryOperation" Enabled="true">
+        <Panel Text="Board" Tag="Board" PictureName=".\pictrue\orderview.png" Enabled="true">
+          <LargeButton Text="Order View" Tag="OrderView" PictureName=".\picture\orderview.png" Clicked="ue_orderview" Shortcut="ctrl+shift+O" />
+          <LargeButton Text="Customer Maintenance" Tag="CustomerMaintenance" PictureName=".\picture\customermaintenance.png" Clicked="ue_cus_maintenance" Shortcut="ctrl+shift+c"/>
+          <LargeButton Text="Report by order" Tag="Reportbyorder" PictureName=".\picture\ordertype.png" Clicked="ue_rep_ordertype_button" Shortcut="ctrl+shift+r"/>
+        </Panel>
+        <Panel Text="Action" Enabled="true" Tag="Action" PictureName=".\picture\Actions.png">
+          <Group Enabled="true" NewLine="true" Tag="">
+            <SmallButton Text="" Tag="Retrieve" PictureName="RefreshSmall!" Clicked="ue_retrieve" PowerTipText="Refresh" PowerTipDescription="Refresh the DataWindow data" Shortcut="ctrl+R" />
+            <SmallButton Text="" Tag="InsertRow" PictureName=".\picture\InsertRow.png" Clicked="ue_insertrow" PowerTipText="Insert Row" PowerTipDescription="Insert a row to add new data" Shortcut="ctrl+I" />
+          </Group>
+          <Group Enabled="true" NewLine="true" Tag="">
+            <SmallButton Text="" Tag="ModifyRow" PictureName="ModifySmall!" Clicked="ue_modify" Shortcut="ctrl+M"/>
+            <SmallButton Text="" Tag="DeleteRow" PictureName=".\picture\DeleteRow.png" Clicked="ue_DeleteRow" PowerTipDescription="Delete the currently selected row; not commit to the database yet" Shortcut="ctrl+D"/>
+          </Group>
+          <LargeButton Text="Save Data" Tag="SaveData" PictureName="SaveBig!" Clicked="ue_SaveData" PowerTipText="Save Data" PowerTipDescription="Save the specified DataWindow data" Shortcut="ctrl+S">
+          </LargeButton>
+          <Group Tag="">
+            <SmallButton Tag="First" PictureName=".\picture\NavFirstSmall.png" Clicked="ue_first" PowerTipDescription="Scroll to first row" />
+          </Group>          
+          <Group Tag="">
+            <SmallButton Tag="Prior" PictureName=".\picture\NavPrevSmall.png" Clicked="ue_prior" PowerTipDescription="Scroll to prior row" />
+          </Group>
+          <Group Tag="">
+            <SmallButton Tag="Next" PictureName=".\picture\NavNextSmall.png" Clicked="ue_next" PowerTipDescription="Scroll to next row" />
+          </Group>
+          <Group Tag="">
+            <SmallButton Tag="Last" PictureName=".\picture\NavLastSmall.png" Clicked="ue_last" PowerTipDescription="Scroll to last row" />
+          </Group>
+          <Group Tag="" NewLine="true">
+            <SmallButton Text="" Tag="Sort" PictureName="SortSmall!" Clicked="ue_Sort" PowerTipDescription="Sort"/>
+            <SmallButton Text="" Tag="Filter" PictureName="FilterSmall!" Clicked="ue_filter" PowerTipDescription="Filter" />
+            <SmallButton Text="" Tag="Find" PictureName=".\picture\Find.png" Clicked="ue_find" PowerTipDescription="Find" Shortcut="ctrl+F"/>
+            <SmallButton Text="" Tag="FindNext" PictureName=".\picture\FindNext.png" Clicked="ue_FindNext" PowerTipDescription="Find Next" Shortcut="ctrl+N"/>
+          </Group>
+        </Panel>
+        <Panel Text="Export PDF" Enabled="true" Tag="ExportPDF" PictureName="ExportBig!">
+          <LargeButton Text="Export Data" Tag="ExportData" PictureName="ExportBig!" Clicked="ue_ExportPDF" PowerTipText="Export data" PowerTipDescription="Export the specified DataWindow data to PDF" />
+          <LargeButton Text="NativePDF" Tag="ExportMethod" PictureName=".\picture\NativePdfBig.png" Clicked="" PowerTipText="Method" PowerTipDescription="Export PDF Method" DefaultCommand="false">
+            <Menu>
+              <Item Text="Distill" Tag="Distill" PictureName="AppSmall!" Clicked="ue_ExportMethod_Menu" />
+              <Item Text="NativePDF" Tag="NativePDF" PictureName=".\picture\NativePdfSmall.png" Clicked="ue_ExportMethod_Menu" />
+            </Menu>
+          </LargeButton>
+          <Group>
+            <CheckBox Text="Distill Custom PostScript" Tag="DistillCustomPostScript" Checked="false" Enabled="false" PowerTipText="" PowerTipDescription="" ThreeState="false" Clicked="" Selected="" />
+            <CheckBox Text="Print Using XSLFOP" Tag="PrintUsingXSLFOP" Checked="false" Enabled="false" PowerTipText="" PowerTipDescription="" ThreeState="false" Clicked="" Selected="" />
+          </Group>
+          <Group Tag="NativePDFOperation" NewLine="true">
+            <ComboBox PictureName="" Label="" AllowEdit="false" AutoScale="false" Text="" Tag="PDFConformance" AutoHScroll="true" Enabled="true" PowerTipText="PDF Conformance" PowerTipDescription="DataWindow.Export.PDF.NativePDF.PDFStandard" HScrollBar="false" VScrollBar="false" SelectedIndex="1" Sorted="false" BoxHeight="600" BoxWidth="500" Width="500" Modified="" Selected="" SelectionChanged="">
+              <Item Text="0-None" PictureName="" />
+              <Item Text="1-PDF/A-1a" PictureName="" />
+              <Item Text="2-PDF/A-1b" PictureName="" />
+              <Item Text="3-PDF/A-3a" PictureName="" />
+              <Item Text="4-PDF/A-3b" PictureName="" />
+              <Item Text="5-PDF/A-3u" PictureName="" />
+            </ComboBox>
+            <CheckBox Text="Use Special Print Settings" Tag="UseSpecialPrintSettings" Checked="false" Enabled="true" PowerTipText="" PowerTipDescription="" ThreeState="false" Clicked="ue_exportpdf_printspecialset" Selected="" />
+          </Group>
+          <Group NewLine="true">
+            <ComboBox PictureName="" Label="" AllowEdit="false" AutoScale="false" Text="" Tag="ExportPaperSize" AutoHScroll="true" Enabled="true" PowerTipText="Paper Size" PowerTipDescription="Paper size setting for exporting with NativePDF" HScrollBar="false" VScrollBar="false" SelectedIndex="1" Sorted="false" BoxHeight="600" BoxWidth="600" Width="600" Modified="" Selected="" SelectionChanged="">
+              <Item Text="0-Default" PictureName="" />
+              <Item Text="1-A1 594 x 841 mm" PictureName="" />
+              <Item Text="2-A2 420 x 594 mm" PictureName="" />
+              <Item Text="3-A3 297 x 420 mm" PictureName="" />
+              <Item Text="4-A4 210 x 297 mm" PictureName="" />
+              <Item Text="5-Letter 8 1/2 x 11 in" PictureName="" />
+              <Item Text="6-Legal 8 1/2 x 14 in" PictureName="" />
+            </ComboBox>
+            <ComboBox PictureName="" Label="" AllowEdit="false" AutoScale="false" Text="" Tag="ExportOrientation" AutoHScroll="true" Enabled="true" PowerTipText="Orientaion" PowerTipDescription="Paper orientation setting for exporting with NativePDF" HScrollBar="false" VScrollBar="false" SelectedIndex="1" Sorted="false" BoxHeight="600" BoxWidth="600" Width="620" Modified="" Selected="" SelectionChanged="">
+              <Item Text="0-Default" PictureName="" />
+              <Item Text="1-Landscape" PictureName="" />
+              <Item Text="2-Portrait" PictureName="" />
+            </ComboBox>
+          </Group>
+        </Panel>
+        <Panel Text="Print" Tag="PrintPanel" PictureName="PreviewSmall!">
+          <LargeButton Text="Print Preview" Tag="PrintPreview" PictureName="PreviewBig!" Clicked="ue_printpreview" PowerTipText="Preview data" PowerTipDescription="Preview the DataWindow data for printing" Shortcut="ctrl+V"/>
+          <LargeButton Text="Orientation" Tag="Orientation" PictureName="OrientationBig!" Clicked="" DefaultCommand="false" PowerTipText="Print Orientation" PowerTipDescription="Set the print orientation">
+            <Menu>
+              <Item Text="Default" Tag="Default" PictureName=".\picture\Default.png" Clicked="ue_orientation_menu" />
+              <Item Text="Portrait" Tag="Portrait" PictureName=".\picture\Portrait.png" Clicked="ue_orientation_menu" />
+              <Item Text="Landscape" Tag="Landscape" PictureName=".\picture\Landscape.png" Clicked="ue_orientation_menu" />
+            </Menu>
+          </LargeButton>
+          <Group Tag="Print option group1" NewLine="false">
+            <ComboBox Tag="PageSize" PictureName="PageSizeSmall!" Label="" AllowEdit="false" AutoScale="false" Text="" AutoHScroll="true" Enabled="true" PowerTipText="Paper size" PowerTipDescription="Choose the paper size from the dropdown list" HScrollBar="false" VScrollBar="true" SelectedIndex="1" Sorted="false" BoxHeight="900" BoxWidth="650" Width="750" Modified="" Selected="" SelectionChanged="ue_selectionchanged_comb">
+              <Item Text="0 -- Default paper size for the printer" PictureName="" />
+              <Item Text="1 -- Letter 8 1/2 x 11 in" PictureName="" />
+              <Item Text="2 -- LetterSmall 8 1/2 x 11 in" PictureName="" />
+              <Item Text="3 -- Tabloid 17 x 11 in" PictureName="" />
+              <Item Text="4 -- Ledger 17 x 11 in" PictureName="" />
+              <Item Text="5 -- Legal 8 1/2 x 14 in" PictureName="" />
+              <Item Text="6 -- Statement 5 1/2 x 8 1/2 in" PictureName="" />
+              <Item Text="7 -- Executive 7 1/4 x 10 1/2 in" PictureName="" />
+              <Item Text="8 -- A3 297 x 420 mm" PictureName="" />
+              <Item Text="9 --A4 210 x 297 mm" PictureName="" />
+              <Item Text="10 -- A4 Small 210 x 297 mm" PictureName="" />
+              <Item Text="11 -- A5 148 x 210 mm" PictureName="" />
+              <Item Text="12 -- B4 250 x 354 mm" PictureName="" />
+              <Item Text="13 -- B5 182 x 257 mm" PictureName="" />
+              <Item Text="14 -- Folio 8 1/2 x 13 in" PictureName="" />
+              <Item Text="15 -- Quarto 215 x 275 mm" PictureName="" />
+              <Item Text="16 -- 10x14 in" PictureName="" />
+              <Item Text="17 -- 11x17 in" PictureName="" />
+              <Item Text="18 -- Note 8 1/2 x 11 in" PictureName="" />
+              <Item Text="19 -- Envelope #9 3 7/8 x 8 7/8" PictureName="" />
+              <Item Text="20 -- Envelope #10 4 1/8 x 9 1/2" PictureName="" />
+              <Item Text="21 -- Envelope #11 4 1/2 x 10 3/8" PictureName="" />
+              <Item Text="22 -- Envelope #12 4 x 11 1/276" PictureName="" />
+              <Item Text="23 -- Envelope #14 5 x 11 1/2" PictureName="" />
+            </ComboBox>
+            <ComboBox Tag="Zoom" PictureName="ZoomSmall!" Label="" AllowEdit="true" AutoScale="false" Text="" AutoHScroll="true" Enabled="true" PowerTipText="Zoom" PowerTipDescription="Preview zoom setting" HScrollBar="false" VScrollBar="false" SelectedIndex="1" Sorted="true" BoxHeight="600" BoxWidth="250" Width="250" Modified="ue_Modified_comb" Selected="" SelectionChanged="ue_selectionchanged_comb">
+              <Item Text="100%" PictureName="" />
+              <Item Text="75%" PictureName="" />
+              <Item Text="50%" PictureName="" />
+              <Item Text="25%" PictureName="" />
+            </ComboBox>
+            <CheckBox Text="Ruler" Tag="ShowRuler" Checked="false" Enabled="true" PowerTipText="Rulers" PowerTipDescription="Show rulers in preview" ThreeState="false" Clicked="ue_preview_rulers" Selected="" />
+          </Group>
+          <Group Tag="Margins" NewLine="true">
+            <ComboBox Tag="MarginsTop" PictureName=".\picture\MarginsTop.png" Label="" AllowEdit="true" AutoScale="false" Text="" AutoHScroll="true" Enabled="true" PowerTipText="" PowerTipDescription="" HScrollBar="false" VScrollBar="false" SelectedIndex="1" Sorted="true" BoxHeight="600" BoxWidth="200" Width="300" Modified="ue_Modified_comb" Selected="" SelectionChanged="">
+              <Item Text="50" PictureName="" />
+            </ComboBox>
+            <ComboBox Tag="MarginsBottom" PictureName=".\picture\MarginsBottom.png" Label="" AllowEdit="true" AutoScale="false" Text="" AutoHScroll="true" Enabled="true" PowerTipText="" PowerTipDescription="" HScrollBar="false" VScrollBar="false" SelectedIndex="1" Sorted="true" BoxHeight="600" BoxWidth="200" Width="300" Modified="ue_Modified_comb" Selected="" SelectionChanged="">
+              <Item Text="50" PictureName="" />
+            </ComboBox>
+            <ComboBox Tag="MarginsLeft" PictureName=".\picture\MarginsLeft.png" Label="" AllowEdit="true" AutoScale="false" Text="" AutoHScroll="true" Enabled="true" PowerTipText="" PowerTipDescription="" HScrollBar="false" VScrollBar="false" SelectedIndex="1" Sorted="true" BoxHeight="600" BoxWidth="200" Width="300" Modified="ue_Modified_comb" Selected="" SelectionChanged="">
+              <Item Text="50" PictureName="" />
+            </ComboBox>
+            <ComboBox Tag="MarginsRight" PictureName=".\picture\MarginsRight.png" Label="" AllowEdit="true" AutoScale="false" Text="" AutoHScroll="true" Enabled="true" PowerTipText="" PowerTipDescription="" HScrollBar="false" VScrollBar="false" SelectedIndex="1" Sorted="true" BoxHeight="600" BoxWidth="200" Width="300" Modified="ue_Modified_comb" Selected="" SelectionChanged="">
+              <Item Text="50" PictureName="" />
+            </ComboBox>
+          </Group>
+          <LargeButton Text="Print" Tag="Print" PictureName=".\picture\printbig.png" Clicked="ue_print" PowerTipText="Print Data" PowerTipDescription="Print preview datawidnow" Shortcut="ctrl+P" />
+          <LargeButton Text="Print Setup" Tag="PrintSetup" PictureName="PrintSetupBig!" Clicked="ue_print_setup" PowerTipText="Print setup" PowerTipDescription="Open print option dialog before print" />
+        </Panel>
+      </Category>      
+      <!--add Customer toolbar-->
+      <Category Text="Customer" Tag="CategoryCustomer" Enabled="true">
+        <Panel Text="Customer" PictureName=".\picture\Customer.png">
+          <LargeButton Text="New Customer" PictureName=".\picture\newcustomer.png" Clicked="ue_cus_new" />
+          <LargeButton Text="Customer Maintenance" PictureName=".\picture\customermaintenance.png" Clicked="ue_cus_maintenance" />
+          <LargeButton Text="Accounts Receivable" PictureName=".\picture\accountsreceivable.png" Clicked="ue_cus_account" />
+        </Panel>
+      </Category>
+      <!--add Order & Product toolbar-->
+      <Category Text="Order&amp;Product" Tag="CategoryOrderProduct">
+        <Panel Text="Order" PictureName=".\picture\ordertype.png">
+          <LargeButton Text="New Order" PictureName=".\picture\neworder.png" Clicked="ue_order_new" />
+          <LargeButton Text="Order Maintenance" PictureName=".\picture\ordermaintenance.png" Clicked="ue_order_maintenance" />
+          <LargeButton Text="Order Processing" PictureName=".\picture\orderprocessing.png" Clicked="ue_order_process" />
+          <LargeButton Text="Order Shipment" PictureName=".\picture\ordershipment.png" Clicked="ue_order_ship" />
+        </Panel>
+        <Panel Text="Product" PictureName=".\picture\productcategory.png">
+          <LargeButton Text="New Product" PictureName=".\picture\newproduct.png" Clicked="ue_pro_new">
+          </LargeButton>
+          <LargeButton Text="Catalog Manager" PictureName=".\picture\catalogmanager.png">
+            <Menu>
+              <Item Text="Categories" PictureName=".\picture\categories.png" Clicked="ue_pro_category">
+              </Item>
+              <Item Text="Products" PictureName=".\picture\products.png" Clicked="ue_pro_products">
+              </Item>
+            </Menu>
+          </LargeButton>
+          <LargeButton Text="View Catalog" PictureName=".\picture\viewproductcatalog.png" Clicked="ue_pro_viewcat" />
+        </Panel>
+      </Category>
+      <!--add Report toolbar-->
+      <Category Text="Report" Tag="CategoryReport" Enabled="true">
+        <Panel Text="Report" PictureName=".\picture\report small.png">
+          <LargeButton Text="Sales Reports" PictureName=".\picture\salesreport.png" PowerTipText="Report" PowerTipDescription="View reports">
+            <Menu>
+              <Item Text="By Order Type" PictureName=".\picture\ordertype.png" Clicked="ue_rep_ordertype" />
+              <Item Text="By Product Category" PictureName=".\picture\productcategory.png" Clicked="ue_rep_procat" />
+              <Item Text="By Customer" PictureName=".\picture\customer.png" Clicked="ue_rep_cus" />
+            </Menu>
+          </LargeButton>
+          <Group>
+            <SmallButton Tag="2D Pie" Text="2D Pie" PictureName=".\picture\2dpie.png" Clicked="ue_rep_style" PowerTipText="2D" PowerTipDescription="2D Pie" />
+            <SmallButton Tag="3D Column" Text="3D Column" PictureName=".\picture\3dcolumn.png" Clicked="ue_rep_style" PowerTipText="3D" PowerTipDescription="3D Column" />
+            <!--<SmallButton Text="Print" PictureName="printsmall.png" Clicked="ue_rep_print" />
+            <SmallButton Text="Refresh" PictureName="refresh.png" Clicked="ue_rep_refresh" PowerTipText="Refresh" PowerTipDescription="refresh current report data" />-->
+          </Group>
+          <Group NewLine="true">
+            <SmallButton Tag="2D BarStacked" Text="2D Bar" PictureName=".\picture\2dbarstacked.png" Clicked="ue_rep_style" PowerTipText="2D" PowerTipDescription="2D Bar Stacked report" />
+            <SmallButton Tag="Grid Data" Text="Grid Data" PictureName=".\picture\griddata.png" Clicked="ue_rep_style" />
+          </Group>
+          <LargeButton Text="Customer Report" PictureName=".\picture\customerreport.png" Clicked="ue_rep_report" Shortcut="ctrl+Shift+L" />
+        </Panel>
+      </Category>
+    </Categories>
+    <!--add tab buttons that display on the right corner of the toolbar-->
+    <TabButtons>
+      <TabButton Text="Up" PictureName=".\picture\up.png" Clicked="ue_up" />
+      <TabButton Text="About" PictureName=".\picture\help.png" Clicked="ue_about" />
+      <TabButton Text="Close" PictureName=".\picture\close12.png" Clicked="ue_close"  Shortcut="ctrl+E"/>
+    </TabButtons>
+    <!--add Application menu list-->
+    <ApplicationButton Text="Application" Tag="ApplicationButton">
+      <ApplicationMenu>
+        <!--add menu list-->
+        <Master>
+          <Item  Type="1" /> <!-- Type="Separator!"-->
+          <Item Text="User" Tag="UserInfo" PictureName=".\picture\user.png">
+            <!--add secondary menu-->
+            <Item Tag="UserList" Text="User List" PictureName=".\picture\userlist.png" Clicked="ue_userinfo" />
+            <Item Tag="Group" Text="Group" PictureName=".\picture\group.png" Clicked="ue_userinfo" />
+            <Item Type="1" /><!-- Type="Separator!"-->
+            <Item Tag="Password" Text="Password" PictureName=".\picture\password.png" Clicked="ue_userinfo" />
+            <Item Tag="Signout" Text="Sign Out" PictureName=".\picture\signout.png" Clicked="ue_userinfo" />
+            <Item Type="1" /><!-- Type="Separator!"-->
+          </Item>
+          <Item Type="1" /><!-- Type="Separator!"-->
+          <Item Tag="About" Text="About" PictureName=".\picture\about.png" Clicked="ue_about2" />
+          <Item Tag="Close" Text="Close" PictureName=".\picture\close.png" Clicked="ue_close2" />
+          <Item Type="1" /><!-- Type="Separator!"-->
+        </Master>
+        <!--add Recent menu list-->
+        <Recent Title="Recent Windows">
+          <Item />
+        </Recent>
+      </ApplicationMenu>
+    </ApplicationButton>
+  </RibbonItems>
+</RibbonBar>
