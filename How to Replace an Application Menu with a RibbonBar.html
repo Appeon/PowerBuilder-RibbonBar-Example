@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>Tutorial: How to Replace an Application Menu with a RibbonBar -  - Users Guide</title>
+   </head>
+   <body>
+
+
+         <h1><a id="d0e22807"></a>Tutorial: How to Replace an Application Menu with a
+                              RibbonBar         </h1>
+   <div id="content"><div xml:lang="en-US" class="sect1"><div xmlns="" class="titlepage"><div><div></div>
+               </div>
+            </div>
+            <div class="toc">
+               <dl class="toc">
+                  <dt><span class="sect2"><a href="ch13s04.html#d0e22810">Overview</a></span></dt>
+                  <dt><span class="sect2"><a href="ch13s04.html#_Prerequisites">Prerequisites</a></span></dt>
+                  <dt><span class="sect2"><a href="ch13s04.html#_Design_and_create">Design and create a RibbonBar</a></span></dt>
+                  <dt><span class="sect2"><a href="ch13s04.html#_Add_the_RibbonBar">Add the RibbonBar to the application</a></span></dt>
+                  <dt><span class="sect2"><a href="ch13s04.html#Initiate_the_RibbonBar">Initiate the RibbonBar</a></span></dt>
+                  <dt><span class="sect2"><a href="ch13s04.html#Define_and_bind_user_events_with_RibbonBar_items">Define and bind user events with RibbonBar items</a></span></dt>
+                  <dt><span class="sect2"><a href="ch13s04.html#_Associate_functions_with">Associate functions with RibbonBar items</a></span></dt>
+                  <dt><span class="sect2"><a href="ch13s04.html#_Important_notes">Summary notes</a></span></dt>
+               </dl>
+            </div>
+            <div class="sect2">
+               <div xmlns="" class="titlepage">
+                  <div>
+                     <div>
+                        <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="d0e22810"></a>Overview
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>The new RibbonBar control allows you to organize the navigation
+                          of your application in a simple, structured way, and gives the
+                          application the look and feel of modern applications. Because
+                          RibbonBar is provided in PowerBuilder as a control while Menu is a
+                          system object, the way that a RibbonBar works in an application is
+                          different from the application menu. This tutorial uses a demo
+                          application to walk you through the steps of replacing an application
+                          menu with a RibbonBar.
+               </p>
+               <p>The figure below shows what the menu looks like in the original
+                          demo application.
+               </p>
+               <p><span class="inlinemediaobject"><img src="Images/Image1.png" /></span></p>
+               <p>The figure below shows what the RibbonBar control looks like
+                          after you use it to replace the menu in the application.
+
+               <p><span class="inlinemediaobject"><img src="Images/Image2.png" /></span>
+
+               <p><span class="inlinemediaobject"><img src="Images/Image3.png" /></span>
+
+               <p>This tutorial contains the following sections:</p>
+               <div class="itemizedlist">
+                  <ul class="itemizedlist" style="list-style-type: disc; ">
+                     <li class="listitem">
+                        <p><a class="link" href="ch13s04.html#_Prerequisites" title="Prerequisites">Prerequisites</a></p>
+                        <p>This explains how to set up the demo application used in the
+                                       tutorial.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p><a class="link" href="ch13s04.html#Initiate_the_RibbonBar" title="Initiate the RibbonBar">Design and create a
+                                          RibbonBar</a></p>
+                        <p>You shall have a clear understanding of your application to
+                                       know how to design and create a RibbonBar for it.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p><a class="link" href="ch13s04.html#_Add_the_RibbonBar" title="Add the RibbonBar to the application">Add the RibbonBar to the
+                                          application</a></p>
+                        <p>The RibbonBar will replace the existing menu in the
+                                       application. Therefore, you must disable the existing menu before
+                                       adding the RibbonBar.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p><a class="link" href="ch13s04.html#Initiate_the_RibbonBar" title="Initiate the RibbonBar">Initiate the
+                                          RibbonBar</a></p>
+                        <p>The RibbonBar needs to be initiated after created by
+                                       XML/JSON, or PowerScript.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p><a class="link" href="ch13s04.html#Define_and_bind_user_events_with_RibbonBar_items" title="Define and bind user events with RibbonBar items">Define
+                                          and bind user events with RibbonBar items</a></p>
+                        <p>The RibbonBar items have no events and must be bound with
+                                       user events.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p><a class="link" href="ch13s04.html#_Associate_functions_with" title="Associate functions with RibbonBar items">Associate
+                                          functions with RibbonBar items</a></p>
+                        <p>Previously the application functions are all associated with
+                                       menu items. You need to decide which function to associate with
+                                       which RibbonBar item.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p><a class="link" href="ch13s04.html#_Important_notes" title="Summary notes">Summary notes</a></p>
+                        <p>Finally, this section highlights the major points you should
+                                       consider when you start to replace the menu in your application
+                                       with RibbonBar.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="sect2">
+               <div xmlns="" class="titlepage">
+                  <div>
+                     <div>
+                        <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="_Prerequisites"></a>Prerequisites
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>Step 1: Install PowerBuilder 2019 R2.</p>
+               <p>Step 2: Download the RibbonBar demo application <a class="link" href="https://github.com/Appeon/PowerBuilder-RibbonBar-Example" target="_blank">from
+                             here</a>.
+               </p>
+               <p>Step 3: Set up the sample database.</p>
+               <div class="orderedlist">
+                  <ol class="orderedlist" type="1">
+                     <li class="listitem">
+                        <p>Get the database file "AppeonSample.db" from the downloaded
+                                       demo application.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p>Set up the ODBC database connection.</p>
+                        <div class="orderedlist">
+                           <ol class="orderedlist" type="i">
+                              <li class="listitem">
+                                 <p>Open Control Panel &gt; System and Security &gt;
+                                                    Administrative Tools &gt; ODBC Data Sources.
+                                 </p>
+                              </li>
+                              <li class="listitem">
+                                 <p>Create a new Data Source in SQL Anywhere 17.</p>
+                              </li>
+                              <li class="listitem">
+                                 <p>Fill in the following data source configurations. Note
+                                                    that username and password for data source connection is “dba”
+                                                    and "sql".
+                                 </p>
+                                 <p><span class="inlinemediaobject"><img src="Images/Image3.png" /></span></p>
+                              </li>
+                              <li class="listitem">
+                                 <p>In PowerBuilder, setup and connect to the created ODBC
+                                                    data source.
+                                 </p>
+                                 <p><span class="inlinemediaobject"><img src="Images/Image4.png" /></span></p>
+                              </li>
+                           </ol>
+                        </div>
+                     </li>
+                  </ol>
+               </div>
+            </div>
+            <div class="sect2">
+               <div xmlns="" class="titlepage">
+                  <div>
+                     <div>
+                        <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="_Design_and_create"></a>Design and create a RibbonBar
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>As the first step, you shall design the RibbonBar, that is,
+                          deciding what items to contain in the RibbonBar, what modern-looking
+                          image to use for each item, and how to group the items, etc.
+               </p>
+               <p>Once you know clearly how you want the RibbonBar to look like,
+                          you can start to create it. We recommend you use the RibbonBar Builder
+                          tool to create the RibbonBar XML/JSON file. Alternatively, you can
+                          choose to directly create a RibbonBar via PowerScript.
+               </p>
+               <p>For detailed instructions on how to create a RibbonBar, refer to
+                          PowerBuilder Help &gt; RibbonBar control. In the Sales Demo
+                          application, for better illustration purpose, you will see both the
+                          XML file and PowerScript code are provided for creating the RibbonBar.
+                          When the application initiates the RibbonBar, it uses an argument in
+                          the wf_init_ribbonbar function to decide which way (XML or
+                          PowerScript) to use for creating the RibbonBar (see <a class="link" href="ch13s04.html#Initiate_the_RibbonBar" title="Initiate the RibbonBar">Initiate the
+                             RibbonBar</a>).
+               </p>
+               <p><span class="bold"><strong>Creating the XML for the RibbonBar in this
+                                demo (Recommended):</strong></span></p>
+               <p>A dedicated tool, RibbonBar Builder, is available in
+                          PowerBuilder to assist you to create the RibbonBar XML (or JSON). In
+                          the tool, you can use a template (RibbonBar.xml) to create your own
+                          XML, and preview the RibbonBar UI while you work. This is the
+                          recommended approach.
+               </p>
+               <p>In the Sales Demo application:</p>
+               <div class="orderedlist">
+                  <ol class="orderedlist" type="1">
+                     <li class="listitem">
+                        <p>Open Tools &gt; RibbonBar Builder in PowerBuilder IDE, and
+                                       open and edit the file created for the RibbonBar:
+                                       <span class="emphasis"><em>SalesApplicationDemo_RibbonBar.xml</em></span>.
+                        </p>
+                     </li>
+                  </ol>
+               </div>
+               <p><span class="bold"><strong>Creating the PowerScript for the RibbonBar
+                                in this demo:</strong></span></p>
+               <p>In the Sales Demo application:</p>
+               <div class="orderedlist">
+                  <ol class="orderedlist" type="1">
+                     <li class="listitem">
+                        <p>Open the function w_mdi.wf_init_ribbonbar, and you will see
+                                       the PowerScript for the RibbonBar in the function. The script is
+                                       different from XML, but shall still be easy to understand.
+                        </p>
+                        <p>For example, the following script inserts File as a
+                                       RibbonBar category, adds an orderview panel in this category, and
+                                       then adds buttons inside the panel.
+                        </p><pre class="programlisting">//File menu
+long ll_handle, ll_category, ll_panel, ll_group
+RibbonSmallButtonItem lrs_item
+Ribbonmenu lrm_menu
+ribbonLargeButtonItem lrl_item
+ribbongroupitem lrg_item
+long ll_return, ll_tmp, ll_tmp2
+ll_category = arbb.insertcategoryfirst ("File") //Insert a category
+//orderview
+ll_panel = arbb.insertpanellast (ll_category, "OrderView", "orderview.png") //Insert a panel
+arbb.insertLargebuttonlast (ll_panel, "Orders", "orderview.png", "ue_orderview") //Insert button
+arbb.insertLargebuttonLast (ll_panel, "Print", "printbig.png", "ue_orderview_print")
+</pre></li>
+                  </ol>
+               </div>
+            </div>
+            <div class="sect2">
+               <div xmlns="" class="titlepage">
+                  <div>
+                     <div>
+                        <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="_Add_the_RibbonBar"></a>Add the RibbonBar to the application
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <div class="toc">
+                  <dl class="toc">
+                     <dt><span class="sect3"><a href="ch13s04.html#d0e22959">Replacing the existing menu with an empty one</a></span></dt>
+                     <dt><span class="sect3"><a href="ch13s04.html#d0e22973">Inserting a RibbonBar control to the MDI window</a></span></dt>
+                     <dt><span class="sect3"><a href="ch13s04.html#d0e22989">Disabling ControlMenu in sheet windows</a></span></dt>
+                  </dl>
+               </div>
+               <div class="sect3">
+                  <div xmlns="" class="titlepage">
+                     <div>
+                        <div>
+                           <h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="d0e22959"></a>Replacing the existing menu with an empty one
+                           </h4>
+                        </div>
+                     </div>
+                  </div>
+                  <p>After the RibbonBar is applied, the previous menu will no
+                               longer be used in the application. You can create an empty menu and
+                               assign it to the MDI window, as a menu is required for all MDI frame
+                               windows (the MenuName property for the MDI window must be
+                               set).
+                  </p>
+                  <div class="orderedlist">
+                     <ol class="orderedlist" type="1">
+                        <li class="listitem">
+                           <p>Use New &gt; PB Object &gt; Menu to create a new menu
+                                            object. It is unnecessary to define any menu item for the menu
+                                            or attach any script to it. If you do add a menu item, make sure
+                                            the item shall be set to invisible.
+                           </p>
+                        </li>
+                        <li class="listitem">
+                           <p>Assign the empty menu to the MDI window.</p>
+                        </li>
+                     </ol>
+                  </div>
+                  <p>In the Sales Demo application, we created the menu object
+                               m_mdi_none and assigned it to the MDI window. The menu object
+                               contains one main menu and one submenu. Note that the submenu item
+                               is set to invisible.
+                  </p>
+               </div>
+               <div class="sect3">
+                  <div xmlns="" class="titlepage">
+                     <div>
+                        <div>
+                           <h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="d0e22973"></a>Inserting a RibbonBar control to the MDI window
+                           </h4>
+                        </div>
+                     </div>
+                  </div>
+                  <p>Insert the RibbonBar control into the MDI window. Note that
+                               you must resize the width and height for RibbonBar area in
+                               correspondence with the MDI client area to make sure the RibbonBar
+                               fits well in the MDI window.
+                  </p>
+                  <p>In the Sales Demo application:</p>
+                  <div class="orderedlist">
+                     <ol class="orderedlist" type="1">
+                        <li class="listitem">
+                           <p>Insert the RibbonBar control into the MDI window (from
+                                            menu: Insert &gt; Control &gt; RibbonBar in PowerBuilder
+                                            IDE).
+                           </p>
+                        </li>
+                        <li class="listitem">
+                           <p>Add the following resize() code to resize the RibbonBar
+                                            and the MDI window:
+                           </p><pre class="programlisting">//resize RibbonBar
+rbb_1.move(0, newheight - this.workspaceheight()  )
+rbb_1.width = newwidth
+//resize mdi_1 based on RibbonBar
+mdi_1.move (0, rbb_1.height + newheight - this.workspaceheight())
+mdi_1.resize (newwidth, newheight - rbb_1.height - ( newheight - this.workspaceheight()))
+</pre></li>
+                     </ol>
+                  </div>
+               </div>
+               <div class="sect3">
+                  <div xmlns="" class="titlepage">
+                     <div>
+                        <div>
+                           <h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="d0e22989"></a>Disabling ControlMenu in sheet windows
+                           </h4>
+                        </div>
+                     </div>
+                  </div>
+                  <p>Because the RibbonBar control applies to the whole
+                               application, and the RibbonBar control usually contains a tab button
+                               to close the sheet window, it is no longer necessary to provide the
+                               Control Menu in the sheet windows. Make sure to design the new
+                               RibbonBar to contain a Close/Exit tab button so that the sheet
+                               window can be closed after the Control Menu is disabled.
+                  </p>
+                  <p>In the Sales Demo application:</p>
+                  <div class="orderedlist">
+                     <ol class="orderedlist" type="1">
+                        <li class="listitem">
+                           <p>Open every sheet window (for example, w_sheet), and
+                                            uncheck the ControlMenu property in the General tab of the
+                                            Properties window.
+                           </p>
+                        </li>
+                        <li class="listitem">
+                           <p>Add the close/exit tab button to the RibbonBar top-right
+                                            corner when we <a class="link" href="ch13s04.html#_Design_and_create" title="Design and create a RibbonBar">design and
+                                               create the RibbonBar</a>.
+                           </p>
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2">
+               <div xmlns="" class="titlepage">
+                  <div>
+                     <div>
+                        <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="Initiate_the_RibbonBar"></a>Initiate the RibbonBar
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <div class="toc">
+                  <dl class="toc">
+                     <dt><span class="sect3"><a href="ch13s04.html#d0e23014">Initiating the RibbonBar created by XML</a></span></dt>
+                     <dt><span class="sect3"><a href="ch13s04.html#d0e23047">Initiating the RibbonBar created by PowerScript</a></span></dt>
+                  </dl>
+               </div>
+               <p>In the <a class="link" href="ch13s04.html#_Design_and_create" title="Design and create a RibbonBar">Design and create a
+                             RibbonBar</a> section, we create the RibbonBar for the application
+                          in two ways: by XML/JSON or by PowerScript. We can initiate the
+                          RibbonBar created in either way.
+               </p>
+               <div class="sect3">
+                  <div xmlns="" class="titlepage">
+                     <div>
+                        <div>
+                           <h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="d0e23014"></a>Initiating the RibbonBar created by XML
+                           </h4>
+                        </div>
+                     </div>
+                  </div>
+                  <p>In the Sales Demo Application:</p>
+                  <div class="orderedlist">
+                     <ol class="orderedlist" type="1">
+                        <li class="listitem">
+                           <p>Add an instance variable in the MDI window.</p><pre class="programlisting">String is_Ribbonbar_XML_Name = "SalesApplicationDemo_RibbonBar.xml"</pre><div class="note" style="margin-left: 0in; margin-right: 0in; border-bottom: solid thin; border-top: solid thin; border-color:#555555">
+                              <h3 class="title">Note</h3>
+                              <p>Make sure this XML file exists in the specified location
+                                                 at the client when the PowerBuilder executable application is
+                                                 deployed and run at the client.
+                              </p>
+                           </div>
+                        </li>
+                        <li class="listitem">
+                           <p>Initiate the RibbonBar control in the
+                                            <code class="function">open()</code> event of the MDI window. The second
+                                            argument must be <span class="returnvalue">True</span>, indicating
+                                            that the RibbonBar will be initiated using XML.
+                           </p><pre class="programlisting">wf_init_ribbonbar (rbb_1, True)</pre></li>
+                        <li class="listitem">
+                           <p>In the <code class="function">wf_init_ribbonbar</code> function of
+                                            the MDI window, load the RibbonBar from the XML file.
+                           </p><pre class="programlisting">If ab_LoadXML Then
+ arbb.ImportFromXMLFile(is_Ribbonbar_XML_Name)
+ return
+End If
+</pre></li>
+                     </ol>
+                  </div>
+               </div>
+               <div class="sect3">
+                  <div xmlns="" class="titlepage">
+                     <div>
+                        <div>
+                           <h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="d0e23047"></a>Initiating the RibbonBar created by PowerScript
+                           </h4>
+                        </div>
+                     </div>
+                  </div>
+                  <p>In the Sales Demo Application:</p>
+                  <div class="orderedlist">
+                     <ol class="orderedlist" type="1">
+                        <li class="listitem">
+                           <p>Initiate RibbonBar menu in the <code class="function">open()</code>
+                                            event of the MDI window. The second argument must be
+                                            <span class="returnvalue">False</span>, indicating that the RibbonBar
+                                            will be initiated using PowerScript.
+                           </p><pre class="programlisting">wf_init_ribbonbar(rbb_1,False)</pre></li>
+                     </ol>
+                  </div>
+               </div>
+            </div>
+            <div class="sect2">
+               <div xmlns="" class="titlepage">
+                  <div>
+                     <div>
+                        <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="Define_and_bind_user_events_with_RibbonBar_items"></a>Define and bind user events with RibbonBar items
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <p>The following ribbon controls have no events and must be bound
+                          with user events:
+               </p>
+               <div class="itemizedlist">
+                  <ul class="itemizedlist" style="list-style-type: disc; ">
+                     <li class="listitem">
+                        <p>RibbonCheckBoxItem, RibbonLargeButtonItem, RibbonMenuItem,
+                                       RibbonSmallButtonItem and RibbonTabButtonItem: You can create and
+                                       bind the clicked and selected user events with them.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p>RibbonComboBoxItem: You can create and bind the modified,
+                                       selected, and selection changed user events with it.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+               <p>When defining a user event for the ribbon control, make sure the
+                          required arguments and types for the event are properly defined. If
+                          the argument or the argument type does not match with the requirement
+                          of the event, the event will not be triggered.
+               </p>
+               <p>For example, in the Sales Demo Application, we need to create
+                          and bind the clicked user event with the Order View large button. The
+                          RibbonLargeButtonItem control requires that the clicked user event
+                          must have a long-type argument and return no value. Therefore, in the
+                          <code class="classname">rbb_1</code> RibbonBar control, we create an event
+                          with its name as <code class="function">ue_orderview</code>, argument name as
+                          <em class="parameter"><code>al_handle</code></em>, argument type as
+                          <em class="parameter"><code>long</code></em>, and the following script:
+               </p><pre class="programlisting">// ue_orderview (long al_handle) returns (none)
+opensheet (w_order_viewer, parent, 0, Original!)</pre><p>And then we bind the <code class="function">ue_orderview</code> user
+                          event with the Order View large button using this script (You can also
+                          bind the <code class="function">ue_orderview</code> user event with the Order
+                          View large button in the XML file):
+               </p><pre class="programlisting">arbb.InsertLargeButtonFirst (ll_Itemhandle_Panel, wf_SetLargetButtonItem_Pro ("Order View", "OrderView", ".\picture\orderview.png", "ue_orderview", True, "", "", "ctrl+shift+O"))</pre><p>Different ribbon controls require different arguments and types
+                          for the user event. For details, see the corresponding user
+                          events:
+               </p>
+               <p><a href="https://docs.appeon.com/appeon_online_help/pb2019r2/powerscript_reference/ch09s16.html#clicked_event_syntax6" class="olink" target="_blank">Clicked</a> in <span class="olinkdocname">PowerScript Reference</span></p>
+               <p><a href="https://docs.appeon.com/appeon_online_help/pb2019r2/powerscript_reference/ch09s118.html#selected_event_syntax1" class="olink" target="_blank">Selected</a> in <span class="olinkdocname">PowerScript Reference</span></p>
+               <p><a href="https://docs.appeon.com/appeon_online_help/pb2019r2/powerscript_reference/ch09s76.html#modified_event_syntax1" class="olink" target="_blank">Modified</a> in <span class="olinkdocname">PowerScript Reference</span></p>
+               <p><a href="https://docs.appeon.com/appeon_online_help/pb2019r2/powerscript_reference/ch09s119.html#selectionChanged_event_syntax4" class="olink" target="_blank">SelectionChanged</a> in <span class="olinkdocname">PowerScript Reference</span></p>
+            </div>
+            <div class="sect2">
+               <div xmlns="" class="titlepage">
+                  <div>
+                     <div>
+                        <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="_Associate_functions_with"></a>Associate functions with RibbonBar items
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <div class="toc">
+                  <dl class="toc">
+                     <dt><span class="sect3"><a href="ch13s04.html#d0e23123">Example 1: Opening the “By Order Type” report</a></span></dt>
+                     <dt><span class="sect3"><a href="ch13s04.html#d0e23185">Example 2: Opening the “2D BarStacked” report</a></span></dt>
+                     <dt><span class="sect3"><a href="ch13s04.html#d0e23245">Example 3: Replacing the Close/Exit in sheet windows</a></span></dt>
+                     <dt><span class="sect3"><a href="ch13s04.html#d0e23299">Example 4: Adding the Application Menu category</a></span></dt>
+                     <dt><span class="sect3"><a href="ch13s04.html#d0e23319">Example 5: Including special RibbonBar widgets</a></span></dt>
+                  </dl>
+               </div>
+               <p>Previously the application functions are all associated with
+                          menu items. You need to decide which function to associate with which
+                          RibbonBar item now. In the Sales Demo application, you can see clearly
+                          how a function that is previously associated with a menu item is now
+                          associated with a RibbonBar item. In this tutorial, let’s explain two
+                          examples.
+               </p>
+               <div class="sect3">
+                  <div xmlns="" class="titlepage">
+                     <div>
+                        <div>
+                           <h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="d0e23123"></a>Example 1: Opening the “By Order Type” report
+                           </h4>
+                        </div>
+                     </div>
+                  </div>
+                  <p>In the original application, the “By Order Type” report is
+                               opened from Report &gt; Sales Reports &gt; By Order Type menu
+                               item.
+                  </p>
+                  <p><span class="inlinemediaobject"><img src="Images/Image5.png" /></span></p>
+                  <p>The new application uses the Report &gt; Sales Reports &gt; By
+                               Order Type RibbonBar item to open the report.
+                  </p>
+                  <p><span class="inlinemediaobject"><img src="Images/Image6.png" /></span></p>
+                  <p><span class="bold"><strong>PowerScript in the previous menu item
+                                     m_report1.m_salesreports.m_byordertype:</strong></span></p><pre class="programlisting">str_rptparm lstr_parm
+
+lstr_parm.ftitle = 'Sales Report by Order Type'
+lstr_parm.fdataobject = ""
+opensheetWithParm (w_rpt_order_type, lstr_parm, parentwindow, 0, Original!)
+</pre><p><span class="bold"><strong>PowerScript in the event
+                                     ue_rep_ordertype of the RibbonBar:</strong></span></p><pre class="programlisting">str_rptparm lstr_parm
+
+lstr_parm.ftitle = 'Sales Report by Order Type'
+lstr_parm.fdataobject = ""
+opensheetWithParm (w_rpt_order_type, lstr_parm, parent, 0, Original!)
+
+iw_tmp = w_rpt_order_type
+wf_setstyle("2D BarStacked")
+</pre><p><span class="bold"><strong>Key points covered in the PowerScript
+                                     change:</strong></span></p>
+                  <div class="itemizedlist">
+                     <ul class="itemizedlist" style="list-style-type: disc; ">
+                        <li class="listitem"><pre class="programlisting">opensheetWithParm (w_rpt_order_type, lstr_parm, parent, 0, Original!)</pre><p>As the report item is placed in the RibbonBar panel, the
+                                            parent object for this item is changed; therefore, the
+                                            <em class="parameter"><code>mdiframe</code></em> argument of
+                                            <code class="function">OpenSheetWithParm</code> must be changed from
+                                            <span class="returnvalue">parentwindow</span> to
+                                            <span class="returnvalue">parent</span>. The <span class="property">Tag</span>
+                                            value is migrated into this RibbonBar item. You can find more
+                                            information for <span class="property">Tag</span> migration in the next
+                                            example.
+                           </p>
+                        </li>
+                        <li class="listitem"><pre class="programlisting">iw_tmp = w_rpt_order_type</pre><p>The original toolbar items are migrated as RibbonBar items
+                                            (small buttons), e.g. 2D Pie, 3D Column, 2D BarStacked/Line and
+                                            Grid Data items. The items may be enabled or disabled depending
+                                            on the activation of the sheet window. Here we add each opened
+                                            window into a buffer to track the activation status, so that it
+                                            can control the status for the RibbonBar items.
+                           </p>
+                        </li>
+                        <li class="listitem"><pre class="programlisting">wf_setstyle("2D BarStacked")</pre><p>Identify if the report supports 2D BarStacked or 2D Line
+                                            style. In this example, the small button “2D Bar” is displayed
+                                            when this report is actively opened.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect3">
+                  <div xmlns="" class="titlepage">
+                     <div>
+                        <div>
+                           <h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="d0e23185"></a>Example 2: Opening the “2D BarStacked” report
+                           </h4>
+                        </div>
+                     </div>
+                  </div>
+                  <p>In the original application, the “2D BarStacked” report is
+                               opened from the “2D BarStacked” toolbar item.
+                  </p>
+                  <p><span class="inlinemediaobject"><img src="Images/Image7.png" /></span></p>
+                  <p>The new application uses the Report &gt; 2D Bar RibbonBar item
+                               to open the “2D Bar” report, and then provides the 2D BarStacked
+                               option in the report for users to view the 2D Bar Stacked
+                               report.
+                  </p>
+                  <p><span class="inlinemediaobject"><img src="Images/Image8.png" /></span></p>
+                  <p><span class="bold"><strong>PowerScript in the previous toolbar item
+                                     m_report.m_settings.m_defaultsettings.m_reportstyle.m_item1:</strong></span></p><pre class="programlisting">ParentWindow.Dynamic Event ue_Settings(This.Tag)
+If This.Checked Then Return
+This.Checked = True
+m_item2.Checked = False
+m_item3.Checked = False
+m_item4.Checked = False
+m_item5.Checked = False
+</pre><p><span class="bold"><strong>PowerScript in the event ue_report_style
+                                     of the RibbonBar:</strong></span></p><pre class="programlisting">ribbonsmallbuttonitem lrs_item
+this.getsmallbutton (al_handle, lrs_item)
+string ls_tag
+ls_tag = lrs_item.tag
+if isvalid (iw_tmp) then
+ iw_tmp.dynamic event ue_Settings(lrs_item.tag)
+end if</pre><p><span class="bold"><strong>Key points covered in the PowerScript
+                                     change:</strong></span></p>
+                  <div class="itemizedlist">
+                     <ul class="itemizedlist" style="list-style-type: disc; ">
+                        <li class="listitem">
+                           <p>The Checked status for the toolbar item is no longer
+                                            applicable for RibbonBar item.
+                           </p>
+                        </li>
+                        <li class="listitem"><pre class="programlisting">ribbonsmallbuttonitem lrs_item
+this.getsmallbutton (al_handle, lrs_item)
+string ls_tag
+ls_tag = lrs_item.tag
+</pre><p>The <span class="property">Tag</span> property is used as the
+                                            identifier for some business logic of toolbar items. The
+                                            <span class="property">Tag</span> value needs to be migrated into the
+                                            RibbonBar item. In this example, we use handle to obtain the
+                                            <span class="property">Tag</span> value from a RibbonBar item. The report
+                                            style will be switched based on the <span class="property">Tag</span>
+                                            value.
+                           </p>
+                        </li>
+                        <li class="listitem"><pre class="programlisting">if isvalid (iw_tmp) then
+ iw_tmp.dynamic event ue_Settings(lrs_item.tag)
+end if
+</pre><p>The <span class="returnvalue">ParentWindow</span> is not
+                                            applicable for RibbonBar items. And the parent object is not
+                                            applicable for RibbonBar either, because the parent window is an
+                                            MDI window instead of a sheet window. The actual parent object
+                                            will be the tracked sheet window in the buffer. The buffer is
+                                            maintained in the <code class="code">iw_tmp</code> object.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect3">
+                  <div xmlns="" class="titlepage">
+                     <div>
+                        <div>
+                           <h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="d0e23245"></a>Example 3: Replacing the Close/Exit in sheet windows
+                           </h4>
+                        </div>
+                     </div>
+                  </div>
+                  <p>In the original MDI window application, the control menu
+                               provides the Close button to close the sheet window, and the Exit
+                               button to close the application.
+                  </p>
+                  <p><span class="inlinemediaobject"><img src="Images/Image9.png" /></span></p>
+                  <p>When using the RibbonBar, the open, close and refresh
+                               functions are now provided in the RibbonBar, and the ControlMenu
+                               property should be disabled in the sheet windows.
+                  </p>
+                  <p><span class="inlinemediaobject"><img src="Images/Image10.png" /></span></p>
+                  <p><span class="bold"><strong>PowerScript in the previous w_sheet
+                                     object close() event:</strong></span></p><pre class="programlisting">parentwindow().post dynamic event ue_closesheet(this.classname())</pre><p><span class="bold"><strong>PowerScript in the w_sheet object
+                                     close() event of the RibbonBar:</strong></span></p><pre class="programlisting">parentwindow().post dynamic event ue_closesheet(this.classname())
+if isvalid(w_mdi) then
+ w_mdi.post function wf_refresh_ribbon()
+end if
+parentwindow().post function Arrangesheets(Layer!)</pre><p><span class="bold"><strong>Key points covered in the PowerScript
+                                     change:</strong></span></p>
+                  <div class="itemizedlist">
+                     <ul class="itemizedlist" style="list-style-type: disc; ">
+                        <li class="listitem"><pre class="programlisting">w_mdi.post function wf_refresh_ribbon()</pre><p>In the <code class="function">Close</code> event of the sheet
+                                            window, call the <code class="function">wf_refresh_ribbon</code> function
+                                            to refresh the RibbonBar buttons and controls in the MDI window
+                                            at the closing of the sheet window w_mdi function. For example,
+                                            if the 2D BarStacked report window is closed, the current active
+                                            report supports 2D Line style. The style button in the RibbonBar
+                                            is refreshed to display the 2D Line button.
+                           </p>
+                        </li>
+                        <li class="listitem"><pre class="programlisting">parentwindow().post function Arrangesheets(Layer!)</pre><p>In the <code class="function">Close</code> event of the sheet
+                                            window, call the <code class="function">ArrangeSheets</code> function to
+                                            re-arrange all the remaining sheet windows via the
+                                            <em class="parameter"><code>Layer</code></em> parameter.
+                           </p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect3">
+                  <div xmlns="" class="titlepage">
+                     <div>
+                        <div>
+                           <h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="d0e23299"></a>Example 4: Adding the Application Menu category
+                           </h4>
+                        </div>
+                     </div>
+                  </div>
+                  <p>The Application Menu category contains the generic application
+                               functions, including:
+                  </p>
+                  <div class="itemizedlist">
+                     <ul class="itemizedlist" style="list-style-type: disc; ">
+                        <li class="listitem">
+                           <p>Recent Windows, listing the recently opened
+                                            windows;
+                           </p>
+                           <p><span class="inlinemediaobject"><img src="Images/Image11.png" /></span></p>
+                        </li>
+                        <li class="listitem">
+                           <p>User, providing the user/group management, password
+                                            setting, and sign out functions;
+                           </p>
+                           <p><span class="inlinemediaobject"><img src="Images/Image12.png" /></span></p>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="sect3">
+                  <div xmlns="" class="titlepage">
+                     <div>
+                        <div>
+                           <h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="d0e23319"></a>Example 5: Including special RibbonBar widgets
+                           </h4>
+                        </div>
+                     </div>
+                  </div>
+                  <p>There are some special RibbonBar widgets that can further
+                               enhance user experience in the application.
+                  </p>
+                  <p>For example, the standard RibbonBar buttons for collapsing and
+                               expanding, help, and closing functions, as shown below:
+                  </p>
+                  <p><span class="inlinemediaobject"><img src="Images/Image13.png" /></span></p>
+               </div>
+            </div>
+            <div class="sect2">
+               <div xmlns="" class="titlepage">
+                  <div>
+                     <div>
+                        <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="_Important_notes"></a>Summary notes
+                        </h3>
+                     </div>
+                  </div>
+               </div>
+               <div class="itemizedlist">
+                  <ul class="itemizedlist" style="list-style-type: disc; ">
+                     <li class="listitem">
+                        <p>The RibbonBar can be constructed by a standard XML/JSON
+                                       file. PowerBuilder provides RibbonBar Builder with preview
+                                       functionality to assist you to create the XML/JSON file.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p>When you apply a RibbonBar to an application, the previous
+                                       menu in the application shall be removed. It is recommended that
+                                       you create an empty menu and assign it to the MenuName property of
+                                       the MDI window of the application.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p>The ControlMenu property must be disabled for all windows in
+                                       the application, so that the Control Menu titlebar will not
+                                       display when a sheet window is maximized.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p>Remember to resize the width and height for RibbonBar area
+                                       and the MDI client area after the RibbonBar is added to the MDI
+                                       window. This is to make sure the sheet windows opened in the MDI
+                                       window will display properly together with the RibbonBar.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p>If some windows are inherited from an ancient window, you
+                                       can follow the same way to associate functions with the child
+                                       windows as with the ancient window.
+                        </p>
+                        <p>If previously some menu items with the same functionality
+                                       are placed in different sheet windows and you plan to put the menu
+                                       items in the same panel in the RibbonBar, you can consider to
+                                       control the enable/disable statuses of the RibbonBar items
+                                       depending on the active status of the sheet windows.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p>The window (including MDI window) that contains the
+                                       RibbonBar control will have the Deactivate event triggered 1) when
+                                       you click the drop-down arrow to show the Ribbon menu items, or 2)
+                                       when you click the drop-down arrow to show the Ribbon panel items
+                                       (the drop-down arrow appears when the panel is resized to only
+                                       show the panel title). When the Window Deactivate event is
+                                       triggered, the control within the window will lose focus.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p>The ribbon item controls have no events and must be bound
+                                       with user events. For more, see <a href="https://docs.appeon.com/appeon_online_help/pb2019r2/objects_and_controls/ch03s47.html" class="olink" target="_blank">the section called “Clicked”</a> in <span class="olinkdocname">Objects and Controls</span>, <a href="https://docs.appeon.com/appeon_online_help/pb2019r2/objects_and_controls/ch03s251.html" class="olink" target="_blank">the section called “Selected”</a> in <span class="olinkdocname">Objects and Controls</span>, <a href="https://docs.appeon.com/appeon_online_help/pb2019r2/objects_and_controls/ch03s191.html" class="olink" target="_blank">the section called “Modified”</a> in <span class="olinkdocname">Objects and Controls</span>, and
+                                       <a href="https://docs.appeon.com/appeon_online_help/pb2019r2/objects_and_controls/ch03s255.html" class="olink" target="_blank">the section called “SelectionChanged”</a> in <span class="olinkdocname">Objects and Controls</span>.
+                        </p>
+                     </li>
+                     <li class="listitem">
+                        <p>If the RibbonBar is created by XML (or JSON), make sure this
+                                       XML (or JSON) exists in the specified location at the client when
+                                       the PowerBuilder executable application is deployed and run at the
+                                       client.
+                        </p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+   </div>
+      </body>
+</html>
