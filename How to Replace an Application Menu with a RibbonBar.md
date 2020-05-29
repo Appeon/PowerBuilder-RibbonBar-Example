@@ -7,11 +7,11 @@ PowerBuilder as a control while Menu is a system object, the way that a RibbonBa
 
 The figure below shows what the menu looks like in the original demo application.
 
-![](Images/image1.png)
+![](Images/Image1.png)
 
 The figure below shows what the RibbonBar control looks like after you use it to replace the menu in the application.
 
-![](Images/image2.png)
+![](Images/Image2.png)
 
 This tutorial contains the following sections:
 
@@ -61,11 +61,11 @@ Step 3: Set up the sample database.
 
    iii. Fill in the following data source configurations. Note that username and password for data source connection is "dba" and "sql\".
 
-   ![](Images/image3.png)
+   ![](Images/Image3.png)
    
    iv. In PowerBuilder, setup and connect to the created ODBC data source.
 
-   ![](Images/image4.png)
+   ![](Images/Image4.png)
 
 ## Design and create a RibbonBar
 
@@ -249,11 +249,11 @@ Previously the application functions are all associated with menu items. You nee
 
 In the original application, the "By Order Type" report is opened from Report \> Sales Reports \> By Order Type menu item.
 
-![](Images/image5.png)
+![](Images/Image5.png)
 
 The new application uses the Report \> Sales Reports \> By Order Type RibbonBar item to open the report.
 
-![](Images/image6.png)
+![](Images/Image6.png)
 
 **PowerScript in the previous menu item m\_report1.m\_salesreports.m\_byordertype:**
 
@@ -298,11 +298,11 @@ wf_setstyle("2D BarStacked")
 
 In the original application, the "2D BarStacked" report is opened from the "2D BarStacked" toolbar item.
 
-![](Images/image7.png)
+![](Images/Image7.png)
 
 The new application uses the Report \> 2D Bar RibbonBar item to open the "2D Bar" report, and then provides the 2D BarStacked option in the report for users to view the 2D Bar Stacked report.
 
-![](Images/image8.png)
+![](Images/Image8.png)
 
 **PowerScript in the previous toolbar item 
 m\_report.m\_settings.m\_defaultsettings.m\_reportstyle.m\_item1:**
@@ -351,11 +351,11 @@ end if
 
 In the original MDI window application, the control menu provides the Close button to close the sheet window, and the Exit button to close the application.
 
-![](Images/image9.png)
+![](Images/Image9.png)
 
 When using the RibbonBar, the open, close and refresh functions are now provided in the RibbonBar, and the ControlMenu property should be disabled in the sheet windows.
 
-![](Images/image10.png)
+![](Images/Image10.png)
 
 **PowerScript in the previous w\_sheet object close() event:**
 
@@ -389,11 +389,11 @@ The Application Menu category contains the generic application functions, includ
 
 - Recent Windows, listing the recently opened windows;
 
-  ![](Images/image11.png)
+  ![](Images/Image11.png)
 
 - User, providing the user/group management, password setting, and sign out functions;
 
-  ![](Images/image12.png)
+  ![](Images/Image12.png)
 
 ### Example 5: Including special RibbonBar widgets
 
@@ -401,7 +401,7 @@ There are some special RibbonBar widgets that can further enhance user experienc
 
 For example, the standard RibbonBar buttons for collapsing and expanding, help, and closing functions, as shown below:
 
-![](Images/image13.png)
+![](Images/Image13.png)
 
 ## Summary notes
 
