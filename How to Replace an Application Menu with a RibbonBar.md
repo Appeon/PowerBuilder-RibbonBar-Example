@@ -45,7 +45,7 @@ This tutorial contains the following sections:
 
 ## Prerequisites
 
-Step 1: Install PowerBuilder 2019 R2.
+Step 1: Install PowerBuilder 2019 R3.
 
 Step 2: Download the RibbonBar demo application [from here](https://github.com/Appeon/PowerBuilder-RibbonBar-Example).
 
