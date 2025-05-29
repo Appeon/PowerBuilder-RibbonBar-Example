@@ -1,0 +1,6 @@
+Save Format v3.0(19990112)
+@begin Targets
+ 0 "Appeon.RibbonbarApp\\ribbonbarapp.pbt";
+@end;
+DefaultTarget "Appeon.RibbonbarApp\\ribbonbarapp.pbt";
+DefaultRemoteTarget "Appeon.RibbonbarApp\\ribbonbarapp.pbt";

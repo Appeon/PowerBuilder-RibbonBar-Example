@@ -1,4 +1,4 @@
-﻿# PowerBuilder-UI-Example
+﻿# PowerBuilder-RibbonBar-Example
 
 This demo is a PowerBuilder application, developed with Appeon [PowerBuilder 2025](https://www.appeon.com/products/powerbuilder). It demonstrates techniques to modernize the look of an application. It shows two major functionalities:
 
@@ -23,8 +23,8 @@ Note: This Demo only provides the customized theme color comparison based on two
 The project is structured as follows.
 
 ```
-|—— PowerBuilder-UI-Example Repository 
-	|—— Appeon.UIDemo				PowerBuilder project source code
+|—— PowerBuilder-RibbonBar-Example Repository 
+	|—— Appeon.RibbonBar				PowerBuilder project source code
 ```
 
 ### Setting Up the Project
