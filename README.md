@@ -24,7 +24,7 @@ The project is structured as follows.
 
 ```
 |—— PowerBuilder-RibbonBar-Example Repository 
-	|—— Appeon.RibbonBar				PowerBuilder project source code
+	|—— Appeon.RibbonBarApp				PowerBuilder project source code
 ```
 
 ### Setting Up the Project
