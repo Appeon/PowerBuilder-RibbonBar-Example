@@ -1,6 +1,6 @@
 ﻿# PowerBuilder-RibbonBar-Example
 
-This demo is a PowerBuilder application, developed with Appeon [PowerBuilder 2025](https://www.appeon.com/products/powerbuilder). It demonstrates techniques to modernize the look of an application. It shows two major functionalities:
+This demo is a PowerBuilder application, developed with Appeon [PowerBuilder 2025 R2](https://www.appeon.com/products/powerbuilder). It demonstrates techniques to modernize the look of an application. It shows two major functionalities:
 
 1. Integrating the RibbonBar control into a MDI application.
    -  Load a RibbonBar XML file.
@@ -31,7 +31,7 @@ The project is structured as follows.
 
 Download this PowerBuilder demo application, and then:
 
-1. Open the PowerBuilder project in PowerBuilder 2025.
+1. Open the PowerBuilder project in PowerBuilder 2025 R2.
 2. Download the database file **pbdemo2021_for_sqlanywhere.zip** from [PowerBuilder-Project-Example-Database](https://github.com/Appeon/PowerBuilder-Project-Example-Database) and restore it.
 3. Configure the ODBC data source.
 4. Copy the database connection string in the configured data source to replace the connection string in the original project. Note that the PWD in the connection string is masked. Please manually change it to the real password.
